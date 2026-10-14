@@ -1,5 +1,5 @@
 // ====== CONFIG: change if your FastAPI runs elsewhere ======
-const API = "http://127.0.0.1:8000";
+const API = "https://nyc-airbnb-room-type-predictor-l7ng.onrender.com";
 
 const HOODS = {
 "Manhattan":"Battery Park City|Chelsea|Chinatown|Civic Center|East Harlem|East Village|Financial District|Flatiron District|Gramercy|Greenwich Village|Harlem|Hell's Kitchen|Inwood|Kips Bay|Little Italy|Lower East Side|Marble Hill|Midtown|Morningside Heights|Murray Hill|NoHo|Nolita|Roosevelt Island|SoHo|Stuyvesant Town|Theater District|Tribeca|Two Bridges|Upper East Side|Upper West Side|Washington Heights|West Village",
