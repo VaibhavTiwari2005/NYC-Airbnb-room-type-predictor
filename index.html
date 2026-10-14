@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StayScope · Room Type Predictor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+<header>
+  <div class="brand"><span class="logo">◈</span><div><h1>StayScope</h1><p>NYC Airbnb room-type predictor</p></div></div>
+  <button id="apiPill" class="pill" title="Click to re-check API"><i></i><span>Checking API…</span></button>
+</header>
+
+<main>
+  <form id="form" class="card" novalidate>
+    <div class="presets">
+      <span>Quick fill:</span>
+      <button type="button" data-preset="loft">🏙️ Manhattan loft</button>
+      <button type="button" data-preset="room">🛏️ Brooklyn room</button>
+      <button type="button" data-preset="bunk">🎒 Queens bunk</button>
+    </div>
+
+    <section>
+      <h2><b>01</b> Location</h2>
+      <div class="grid2">
+        <label>Borough<select id="neighbourhood_group"></select></label>
+        <label>Neighbourhood<select id="neighbourhood"></select></label>
+        <label>Latitude<input id="latitude" type="number" step="any" min="-90" max="90"></label>
+        <label>Longitude<input id="longitude" type="number" step="any" min="-180" max="180"></label>
+      </div>
+      <div id="map" title="Click to drop the pin"><div class="b" style="left:50%;top:38%">Manhattan</div><div class="b" style="left:72%;top:58%">Queens</div><div class="b" style="left:46%;top:72%">Brooklyn</div><div class="b" style="left:62%;top:14%">Bronx</div><div class="b" style="left:14%;top:84%">Staten Is.</div><div id="pin"></div></div>
+      <small class="hint">Click the map to set coordinates ✦</small>
+    </section>
+
+    <section>
+      <h2><b>02</b> Pricing &amp; availability</h2>
+      <label>Price per night <em id="priceOut"></em><input id="price" type="range" min="10" max="1000" step="5"></label>
+      <label>Availability <em id="availOut"></em><input id="availability_365" type="range" min="0" max="365"></label>
+      <label>Minimum nights <em id="minOut"></em><input id="minimum_nights" type="range" min="1" max="365"></label>
+    </section>
+
+    <section>
+      <h2><b>03</b> Reviews &amp; host</h2>
+      <div class="grid3">
+        <label>Total reviews<input id="number_of_reviews" type="number" min="0" step="1"></label>
+        <label>Reviews / month<input id="reviews_per_month" type="number" min="0" step="0.01"></label>
+        <label>Host listings<input id="calculated_host_listings_count" type="number" min="0" step="1"></label>
+      </div>
+    </section>
+
+    <button id="go" class="go" type="submit"><span>Predict room type</span><div class="spin"></div></button>
+  </form>
+
+  <aside>
+    <div id="result" class="card empty">
+      <div class="ph">🔮<p>Fill in the listing details and hit <b>Predict</b> to see the model's verdict.</p></div>
+      <div class="out" hidden>
+        <small>The model thinks this is a</small>
+        <div class="ring" id="ring"><div><span id="icon"></span><strong id="pct">0%</strong></div></div>
+        <h3 id="label"></h3>
+        <div id="bars"></div>
+      </div>
+    </div>
+    <div class="card" id="histCard" hidden><h2>Recent predictions</h2><ul id="hist"></ul></div>
+  </aside>
+</main>
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
